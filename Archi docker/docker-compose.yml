@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 54320:5432
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=user
+      - POSTGRES_DB=timo
+    container_name: timo_db
+    volumes:
+      - ./init-script-sql:/docker-entrypoint-initdb.d
+  # python:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8000:8000"
+  #   container_name: python_dev
+  #   depends_on:
+  #     - postgres
